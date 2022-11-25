@@ -20,6 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'image_publisher = aisd_vision.image_publisher:main',
+            'hands = aisd_vision.hands:main',
         ],
     },
 )
