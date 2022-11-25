@@ -16,7 +16,6 @@ class MinimalSubscriber(Node):
         self.subscription  # prevent unused variable warning
 
     def listener_callback(self, msg):
-
         angle = 0.0
         linear = 0.0
         if msg.xindex > 0.55:
