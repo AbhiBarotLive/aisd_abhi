@@ -34,7 +34,6 @@ class RecordingPublisher(Node):
         ##################################
         # Changed this audio_path to use my ros2 workspace
         audio_path = "/home/aisd/ros2_ws/src/aisd-AbhiBarotLive/aisd_hearing/recordings"
-    
         device = find_device(sys.argv)
         rate = 16000
         while 1:
@@ -46,7 +45,7 @@ class RecordingPublisher(Node):
             except:
                 print("Error recording audio. Check your audio device index.")
                 sys.exit(1)
-        
+
             msg = String()
             msg.data = audio_file
             self.publisher_.publish(msg)
@@ -153,7 +152,7 @@ def record_to_file(path, rate, device):
         data_16GHz = audioop.ratecv(data, sample_width, 1, rate, 16000, None)[0]
     else:
         data_16GHz = pack('<' + ('h'*len(data)), *data)
-        
+
     wf = wave.open(path, 'wb')
     wf.setnchannels(1)
     wf.setsampwidth(sample_width)
@@ -167,9 +166,9 @@ def find_device(args):
     p = pyaudio.PyAudio()
     info = p.get_host_api_info_by_index(0)
     numdevices = info.get('deviceCount')
-    
+
     device = -1
-    
+
     if len(args) > 1:
         if args[1] == "-1":
             print("\nListing audio devices and exiting: ")
@@ -186,7 +185,7 @@ def find_device(args):
                 print("Invalid audio device id.")
                 print("usage: ros2 run aisd_hearing recording_publisher [audio_device_index]")
                 sys.exit(1)
-    elif len(args) == 1: # search for default device        
+    elif len(args) == 1: # search for default device
         for i in range(0, numdevices):
              if (p.get_device_info_by_host_api_device_index(0, i).get('maxInputChannels')) > 0:
                  if p.get_device_info_by_host_api_device_index(0, i).get('name') == 'default':
@@ -204,7 +203,7 @@ def find_device(args):
         sys.exit(1)
 
     return device
-        
+
 def main(args=None):
     rclpy.init(args = args)
 
