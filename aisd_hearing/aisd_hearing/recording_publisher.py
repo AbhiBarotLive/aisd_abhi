@@ -33,7 +33,7 @@ class RecordingPublisher(Node):
             self.listening = True
         ##################################
         # Changed this audio_path to use my ros2 workspace
-        audio_path = "/home/aisd/ros2_ws/src/aisd-AbhiBarotLive/aisd_hearing/aisd_hearing/recordings"
+        audio_path = "/home/aisd/ros2_ws/src/aisd-AbhiBarotLive/aisd_hearing/recordings"
     
         device = find_device(sys.argv)
         rate = 16000
